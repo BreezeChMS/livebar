@@ -14,6 +14,8 @@ var livebar = function () { // wrap in function to avoid conflicts
 
 	// timing & links
 	var liveUrl = document.currentScript.getAttribute('data-live-url');
+	if (!liveUrl) { liveUrl = 'https://livebar.church/no-url.html'; }
+	var timezone = document.currentScript.getAttribute('data-timezone');
 
 	// service 1
 	var service1DayOfWeek = parseInt(document.currentScript.getAttribute('data-service-1-day-of-week'));

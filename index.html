@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Helping remote church members find your weekend services on your church website.">
+    <meta name="description" content="Livebar is an insanely easy-to-install (and free) banner for your church website, helping your members know where to go for weekend services in the age of the coronavirus.">
     <title>Livebar for Churches</title>
 
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -357,6 +357,7 @@ function update_code() {
 				<div class="tab">data-service-1-duration-minutes="${livebarValues.duration}"</div>
 				<div class="tab">data-dismissable="${livebarValues.dismissable}"</div>
 				<div class="tab">data-live-url="${livebarValues.url}"</div>
+				<div class="tab">data-timezone="${Intl.DateTimeFormat().resolvedOptions().timeZone}"</div>
 				<div class="tab">/&gt;</div>
 				`;
 
@@ -416,6 +417,7 @@ function reloadLivebar() {
 	script.setAttribute('data-service-1-minutes', livebarValues.minutes);
 	script.setAttribute('data-service-1-duration-minutes', livebarValues.duration);
 	script.setAttribute('data-dismissable', livebarValues.dismissable);
+	script.setAttribute('data-timezone', Intl.DateTimeFormat().resolvedOptions().timeZone);
 	head.appendChild(script);
 
 }
