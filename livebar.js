@@ -283,8 +283,6 @@ var livebar = function () { // wrap in function to avoid conflicts
 		nextServiceTimeStarts.setDate(nextServiceTimeStarts.getDate() + (dayOfWeek + 7 - nextServiceTimeStarts.getDay()) % 7);
 		nextServiceTimeStarts.setHours(hours,minutes,00);
 
-		console.log(nextServiceTimeStarts);
-
 		// get next service end time
 		var nextServiceTimeEnds = new Date(nextServiceTimeStarts.getTime() + duration*60000);
 
