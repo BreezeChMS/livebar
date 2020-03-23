@@ -14,6 +14,8 @@ var livebar = function () { // wrap in function to avoid conflicts
 
 	// timing & links
 	var liveUrl = document.currentScript.getAttribute('data-live-url');
+	if (!liveUrl) { liveUrl = 'https://livebar.church/no-url.html'; }
+	var timezone = document.currentScript.getAttribute('data-timezone');
 
 	// service 1
 	var service1DayOfWeek = parseInt(document.currentScript.getAttribute('data-service-1-day-of-week'));
@@ -280,6 +282,8 @@ var livebar = function () { // wrap in function to avoid conflicts
 		var nextServiceTimeStarts = new Date();
 		nextServiceTimeStarts.setDate(nextServiceTimeStarts.getDate() + (dayOfWeek + 7 - nextServiceTimeStarts.getDay()) % 7);
 		nextServiceTimeStarts.setHours(hours,minutes,00);
+
+		console.log(nextServiceTimeStarts);
 
 		// get next service end time
 		var nextServiceTimeEnds = new Date(nextServiceTimeStarts.getTime() + duration*60000);
