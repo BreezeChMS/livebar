@@ -280,7 +280,7 @@
 			</code>
 
 			<a href="#" class="btn btn-primary btn-block btn-lg mt-3" id="copy"><i class="fas fa-clipboard"></i> Copy Code</a>
-
+			<div id="hidden-copy-container"></div>
 	    </div>	
 	    <div class="col-md-1">
 	    	
@@ -412,7 +412,7 @@ function update_code() {
 				<div class="tab">data-dismissable="${livebarValues.dismissable}"</div>
 				<div class="tab">data-live-url="${livebarValues.url}"</div>
 				<div class="tab">data-timezone="${Intl.DateTimeFormat().resolvedOptions().timeZone}"</div>
-				<div class="tab">/&gt;</div>
+				<div class="tab">&gt;&lt;/script&gt;</div>
 				`;
 
 	$('#code').html(code);
@@ -493,7 +493,7 @@ function cleanInput(input) {
 
 function copy(selector){
   var $temp = $("<div>");
-  $("body").append($temp);
+  $("#hidden-copy-container").append($temp);
   $temp.attr("contenteditable", true)
        .html($(selector).html()).select()
        .on("focus", function() { document.execCommand('selectAll',false,null); })
