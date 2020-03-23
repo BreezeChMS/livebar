@@ -343,7 +343,7 @@ function update_code() {
 
 	var code = `
 				&lt;script type="text/javascript"
-				<div class="tab">src="livebar.js"</div>
+				<div class="tab">src="https://livebar.church/livebar.js"</div>
 				<div class="tab">data-layout="${livebarValues.layout}"</div>
 				<div class="tab">data-background-color="${livebarValues.backgroundColor}"</div>
 				<div class="tab">data-button-color="${livebarValues.buttonColor}"</div>
@@ -402,7 +402,7 @@ function reloadLivebar() {
 
 	var head= document.getElementsByTagName('head')[0];
 	var script= document.createElement('script');
-	script.src= 'livebar.js';
+	script.src='https://livebar.church/livebar.jslivebar.js';
 	script.setAttribute('id', 'livebar');
 	script.setAttribute('data-load-livebar-immediately', 'yes');
 	script.setAttribute('data-layout', livebarValues.layout);
