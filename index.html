@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Helping remote church members find your weekend services on your church website.">
+    <title>Livebar for Churches</title>
+
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <!-- Favicons -->
+	<meta name="theme-color" content="#5D4DD6">
+	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+	<link rel="manifest" href="site.webmanifest">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      footer {
+      	background: #f9f9f9;
+      }
+
+      h1 {
+      	font-weight: 700;
+      	font-size: 90px;
+      }
+
+      .purple {
+      	color: #5D4DD6;
+      }
+
+      .pink {
+      	color: #e83e8c;
+      }
+
+      a {
+      	color: #5D4DD6;
+      }
+
+      .btn-primary:link, 
+      .btn-primary:hover, 
+      .btn-primary:active, 
+      .btn-primary:visited {
+      	background: #5D4DD6 !important;
+      	border: 0px;
+      }
+
+      .tab {
+      	margin-left: 40px;
+      }
+
+      .lead {
+      	border-bottom: 1px solid #ddd;
+      	padding-bottom: 40px;
+      }
+
+      code {
+      	border: 1px solid #eee;
+      	padding: 15px;
+      	border-radius: 5px;
+      	min-height: 400px;
+      }
+
+      #looksLikeThis {
+		width: 200px;
+		float: right;
+		margin-right: 20px;      	
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+		@media only screen and (max-width: 800px) {
+			h1 {
+				font-size: 50px;
+			}
+
+	      #looksLikeThis {
+			width: 100%;
+			float: none;
+			margin: 30px 0px -30px 0px; 	
+	      }
+
+		}
+
+
+
+
+
+    </style>
+
+  </head>
+  <body class="d-flex flex-column h-100">
+    <!-- Begin page content -->
+<main role="main" class="flex-shrink-0">
+	<div class="container-fluid">
+	  <div class="row">
+	    <div class="col-xl-3 text-center order-xl-12">
+	     <div id="looksLikeThis" class="mt-3">
+	     	<div style="font-size: 50px; color: #5d4dd6;">
+	     		<i class="fas fa-arrow-up"></i>
+	     	</div>
+     		<div style="margin-top: 0px; margin-left: 0px; display: inline-block; font-size: 20px; transform: rotate(-3deg); color: #000;">
+     			<b>livebar</b> looks like this!
+     		</div>
+	     </div>	     
+	    </div>
+	    <div class="col-xl-6  order-xl-6">
+	      <h1 class="mt-5 text-center">livebar.church</h1>
+	      <p class="lead text-center" style="width: 100%; max-width: 800px; margin: 0px auto;">
+	    Livebar is an insanely easy-to-install (and free) banner for your church website, helping your members know where to go for weekend services in the age of the coronavirus.</p>
+	    </div>
+	    <div class="col-xl-3  order-xl-1">
+	    </div>
+	  </div>
+	</div>
+
+	<div class="container">
+	  <div class="row">
+	    <div class="col-md-1">
+	    	
+	    </div>
+	    <div class="col-md-5">
+	    	<h5 class="mt-5">
+	    		1. Configure livebar with the options you'd like.
+	    	</h5>
+			<form>
+
+			  <div class="form-group">
+			    <label for="date-time">Service/Livestream Time</label>
+			    <select class="form-control" id="date-time">
+			      <option value="0-7-0">Sundays at 7am</option>
+			      <option value="0-7-15">Sundays at 7:15am</option>
+			      <option value="0-7-30">Sundays at 7:30am</option>
+			      <option value="0-7-45">Sundays at 7:45am</option>
+			      <option value="0-8-0">Sundays at 8am</option>
+			      <option value="0-8-15">Sundays at 8:15am</option>
+			      <option value="0-8-30">Sundays at 8:30am</option>
+			      <option value="0-8-45">Sundays at 8:45am</option>
+			      <option value="0-9-0" selected>Sundays at 9am</option>
+			      <option value="0-9-15">Sundays at 9:15am</option>
+			      <option value="0-9-30">Sundays at 9:30am</option>
+			      <option value="0-9-45">Sundays at 9:45am</option>
+			      <option value="0-10-0">Sundays at 10am</option>
+			      <option value="0-10-15">Sundays at 10:15am</option>
+			      <option value="0-10-30">Sundays at 10:30am</option>
+			      <option value="0-10-45">Sundays at 10:45am</option>
+			      <option value="0-11-0">Sundays at 11am</option>
+			      <option value="0-11-15">Sundays at 11:15am</option>
+			      <option value="0-11-30">Sundays at 11:30am</option>
+			    </select>
+			  </div>
+
+			  <div class="form-group">
+			    <label for="duration">Service Duration</label>
+			    <select class="form-control" id="duration">
+
+			      <option value="5">5 Minutes</option>
+			      <option value="10">10 Minutes</option>
+			      <option value="15">15 Minutes</option>
+			      <option value="20">20 Minutes</option>
+			      <option value="25">25 Minutes</option>
+			      <option value="30">30 Minutes</option>
+			      <option value="35">35 Minutes</option>
+			      <option value="40" selected>40 Minutes</option>
+			      <option value="45">45 Minutes</option>
+			      <option value="50">50 Minutes</option>
+			      <option value="55">55 Minutes</option>
+			      <option value="60">60 Minutes</option>
+			      <option value="65">65 Minutes</option>
+			      <option value="70">70 Minutes</option>
+			      <option value="75">75 Minutes</option>
+			      <option value="80">80 Minutes</option>
+			      <option value="85">85 Minutes</option>
+			      <option value="90">90 Minutes</option>
+
+			    </select>
+			  </div>
+
+			  <div class="form-group">
+			    <label for="layout">Layout</label>
+			    <select class="form-control" id="layout">
+			      <option value="header">Header Bar</option>
+			      <option value="sidebar">Sidebar Widget</option>
+			    </select>
+			  </div>
+
+			  <div class="form-group">
+			    <label for="dismissable">Dismissable</label>
+			    <select class="form-control" id="dismissable">
+			      <option value="no">No, users cannot close the livebar</option>
+			      <option value="yes">Yes, users can close the livebar</option>
+			    </select>
+			  </div>
+
+			  <div class="form-group">
+			    <label for="message">Message in Bar</label>
+			    <input type="text" class="form-control" id="message" value="Join us online this Sunday live at 9am!">
+			  </div>
+
+			  <div class="form-group">
+			    <label for="url">Web address you want people to watch at</label>
+			    <input type="text" class="form-control" id="url" placeholder="https://www.facebook.com/my-church-page">
+			    <small class="form-text text-muted">
+				  This is the website where you want people to go when clicking on the "Watch Live" button. It could be your church Facebook page, a Youtube channel, a Zoom link, or wherever you'd like.
+				</small>
+			  </div>
+
+			  <div class="form-group">
+
+			  	<label for="exampleFormControlInput1">Specify Colors</label>
+
+			  	<div>
+			    	<input type="color" id="background-color" name="head" value="#5D4DD6">
+			    	<label for="exampleFormControlSelect1">Background Color</label>
+				</div>
+
+				<div>
+			    	<input type="color" id="button-color" name="head" value="#180D64">
+			    	<label for="exampleFormControlSelect1">Button</label>
+				</div>
+				
+				<div>
+			    	<input type="color" id="text-color" name="head" value="#ffffff">
+			    	<label for="exampleFormControlSelect1">Text</label>
+				</div>
+				
+				<div>
+			    	<input type="color" id="button-text-color" name="head" value="#ffffff">
+			    	<label for="exampleFormControlSelect1">Button Text</label>
+				</div>
+
+			  </div>
+
+
+
+
+			</form>
+	    </div>
+	    <div class="col-md-5">
+	    	<h5 class="mt-5">
+	    		2. Paste this code into your church website.
+	    	</h5>	    	
+	    	<label></label>
+			<code id="code" style="width: 100%; display: block; background: #f9f9f9;">
+				Loading...
+			</code>
+
+			<a href="#" class="btn btn-primary btn-block btn-lg mt-3" id="copy"><i class="fas fa-clipboard"></i> Copy Code</a>
+
+	    </div>	
+	    <div class="col-md-1">
+	    	
+	    </div>	    
+	  </div>
+	</div>
+
+
+</main>
+
+<footer class="footer mt-auto py-3">
+  <div class="container text-center">
+    <span class="text-muted">With <i class="fas fa-heart pink"></i> from <a href="https://www.breezechms.com" target="_blank">Breeze ChMS</a></span>
+  </div>
+</footer>
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+  integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+  crossorigin="anonymous"></script>
+
+<script>
+
+var settingsChanged = false;
+
+$('select').on('change', function(e) {
+	settingsChanged = true;
+	update_code();
+});
+
+$('input').on('change keyup', function(e) {
+	settingsChanged = true;
+	update_code();
+});
+
+function getLivebarValues() {
+
+	var layout = $('#layout').val();
+	var duration = $('#duration').val();
+	var url = cleanInput($('#url').val());
+	var message = cleanInput($('#message').val());
+	var dateTime = $('#date-time').val();
+	var dismissable = $('#dismissable').val();
+
+	var backgroundColor = $('#background-color').val();
+	var buttonColor = $('#button-color').val();
+	var textColor = $('#text-color').val();
+	var buttonTextColor = $('#button-text-color').val();
+
+	var dateTimeParts = dateTime.split("-");
+	var day = dateTimeParts[0];
+	var hours = dateTimeParts[1];
+	var minutes = dateTimeParts[2];
+
+	var values = {};
+
+	values.layout = layout;
+	values.url = url;
+	values.message = message;
+	values.dismissable = dismissable;
+
+	values.day = day;
+	values.hours = hours;
+	values.minutes = minutes;
+	values.duration = duration;
+
+	values.backgroundColor = backgroundColor;
+	values.buttonColor = buttonColor;
+	values.textColor = textColor;
+	values.buttonTextColor = buttonTextColor;
+
+	return values;
+
+}
+
+var reloadTimeout;
+
+function update_code() {
+
+	var livebarValues = getLivebarValues();
+
+	var code = `
+				&lt;script type="text/javascript"
+				<div class="tab">src="livebar.js"</div>
+				<div class="tab">data-layout="${livebarValues.layout}"</div>
+				<div class="tab">data-background-color="${livebarValues.backgroundColor}"</div>
+				<div class="tab">data-button-color="${livebarValues.buttonColor}"</div>
+				<div class="tab">data-text-color="${livebarValues.textColor}"</div>
+				<div class="tab">data-button-text-color="${livebarValues.buttonTextColor}"</div>
+				<div class="tab">data-button-text="Watch Live in"</div>
+				<div class="tab">data-header-text="${livebarValues.message}"</div>
+				<div class="tab">data-service-1-day-of-week="${livebarValues.day}"</div>
+				<div class="tab">data-service-1-hours="${livebarValues.hours}"</div>
+				<div class="tab">data-service-1-minutes="${livebarValues.minutes}"</div>
+				<div class="tab">data-service-1-duration-minutes="${livebarValues.duration}"</div>
+				<div class="tab">data-dismissable="${livebarValues.dismissable}"</div>
+				<div class="tab">data-live-url="${livebarValues.url}"</div>
+				<div class="tab">/&gt;</div>
+				`;
+
+	$('#code').html(code);
+
+	// clear out previous request if still running
+	if (reloadTimeout) {
+		clearTimeout(reloadTimeout);
+	}
+
+	reloadTimeout = setTimeout(function(){
+						reloadLivebar();
+					}, 100);
+
+}
+
+$('#copy').on('click', function(e) {
+	e.preventDefault();
+	var button = $(this);
+
+	copy($('#code'));
+
+	$(button).html('<i class="fas fa-thumbs-up"></i> Code has been copied!');
+
+	setTimeout(function(){
+		$(button).html('<i class="fas fa-clipboard"></i> Copy Code');
+	}, 3000);
+
+});
+
+function reloadLivebar() {
+
+	var livebarValues = getLivebarValues();
+
+	// if already changed settings, don't show this anymore - the user understands
+	if (settingsChanged == true) {
+		$('#looksLikeThis').hide();
+	}
+
+	$('script#livebar').remove();
+	$('.livebar_container').remove();
+
+	var head= document.getElementsByTagName('head')[0];
+	var script= document.createElement('script');
+	script.src= 'livebar.js';
+	script.setAttribute('id', 'livebar');
+	script.setAttribute('data-load-livebar-immediately', 'yes');
+	script.setAttribute('data-layout', livebarValues.layout);
+	script.setAttribute('data-background-color', livebarValues.backgroundColor);
+	script.setAttribute('data-button-color', livebarValues.buttonColor);
+	script.setAttribute('data-button-text-color', livebarValues.buttonTextColor);
+	script.setAttribute('data-text-color', livebarValues.textColor);
+	script.setAttribute('data-button-text', 'Watch Live in');
+	script.setAttribute('data-header-text', livebarValues.message);
+	script.setAttribute('data-service-1-day-of-week', livebarValues.day);
+	script.setAttribute('data-service-1-hours', livebarValues.hours);
+	script.setAttribute('data-service-1-minutes', livebarValues.minutes);
+	script.setAttribute('data-service-1-duration-minutes', livebarValues.duration);
+	script.setAttribute('data-dismissable', livebarValues.dismissable);
+	head.appendChild(script);
+
+}
+
+function cleanInput(input) {
+
+	// remove tags
+	var input = input.replace(/(<([^>]+)>)/ig,"");
+
+	// remove single quotes
+	var input = input.replace(/'/g,'');
+
+	// remove double quotes
+	var input = input.replace(/"/g,'');
+
+	return input;
+
+}
+
+function copy(selector){
+  var $temp = $("<div>");
+  $("body").append($temp);
+  $temp.attr("contenteditable", true)
+       .html($(selector).html()).select()
+       .on("focus", function() { document.execCommand('selectAll',false,null); })
+       .focus();
+  document.execCommand("copy");
+  $temp.remove();
+}
+
+update_code();
+
+</script>
+
+<script src="https://kit.fontawesome.com/4eb67263e2.js" crossorigin="anonymous"></script>
+
+</body>
+</html>
