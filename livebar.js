@@ -243,17 +243,14 @@ var livebar = function () { // wrap in function to avoid conflicts
 	function trackLivebarUsage(action) {
 
 		var domain = window.location.hostname;
-		var xhr = new XMLHttpRequest();
 
-		if (domain && domain != 'livebar.church') {
-
-			xhr.open('POST', 'https://app.breezechms.com/livebar/ping');
-			xhr.setRequestHeader('Content-Type', 'application/json');
-			xhr.send(JSON.stringify({
-			    domain: domain,
-			    action: action
-			}));
-
+		if (domain && action) {
+			var http = new XMLHttpRequest();
+			var url = 'https://app.breezechms.com/livebar/ping';
+			var params = 'domain=' + domain + '&action=' + action;
+			http.open('POST', url, true);		
+			http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded'); //Send the proper header information along with the request
+			http.send(params);
 		}
 
 	}
