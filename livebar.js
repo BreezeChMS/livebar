@@ -236,8 +236,27 @@ var livebar = function () { // wrap in function to avoid conflicts
 
 		}, 1000);
 
+		trackLivebarUsage('loaded');
+
 	}
 
+	function trackLivebarUsage(action) {
+
+		var domain = window.location.hostname;
+		var xhr = new XMLHttpRequest();
+
+		if (domain && domain != 'livebar.church') {
+
+			xhr.open('POST', 'https://app.breezechms.com/livebar/ping');
+			xhr.setRequestHeader('Content-Type', 'application/json');
+			xhr.send(JSON.stringify({
+			    domain: domain,
+			    action: action
+			}));
+
+		}
+
+	}
 
 	// determines how much time is left or has elapsed relative to `countDownDate`
 	function getCountdownTime(countDownDate) {
