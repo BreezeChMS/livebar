@@ -115,8 +115,8 @@ var livebar = function () { // wrap in function to avoid conflicts
 		@media only screen and (max-width: 800px) {
 			.livebar-header .livebar-close {
 			    position: absolute;
-			    right: 10;
-			    top: 10;
+			    right: 10px;
+			    top: 10px;
 			    font-size: 12px;
 			}
 			.livebar-header .livebar-text {
