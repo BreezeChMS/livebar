@@ -213,6 +213,7 @@ var livebar = function () { // wrap in function to avoid conflicts
 								`;
 
 		// prepend livebar to body
+		closeLivebar(); // close right before inserting to prevent duplicates
 		livebarBody.insertBefore(livebarBar, livebarBody.firstChild);
 
 		// now that the container is added, fetch it
@@ -222,10 +223,7 @@ var livebar = function () { // wrap in function to avoid conflicts
 		if (dismissable == 'yes') {
 			var livebarClose = document.getElementsByClassName("livebar-close");
 			livebarClose[0].addEventListener('click', function(e) {
-				
-				var livebar_container = document.getElementsByClassName("livebar_container");
-				livebar_container[0].style.display = 'none';
-
+				closeLivebar();
 			});
 		}
 
@@ -237,6 +235,14 @@ var livebar = function () { // wrap in function to avoid conflicts
 		}, 1000);
 
 		trackLivebarUsage('loaded');
+
+	}
+
+	function closeLivebar() {
+		var livebar_container = document.getElementsByClassName("livebar_container");
+		if (livebar_container.length > 0) {
+			livebar_container[0].style.display = 'none';
+		}
 
 	}
 
