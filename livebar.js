@@ -244,7 +244,7 @@ var livebar = function () { // wrap in function to avoid conflicts
 
 		var domain = window.location.hostname;
 
-		if (domain && action) {
+		if (domain && action && domain != 'livebar.church') {
 			var http = new XMLHttpRequest();
 			var url = 'https://app.breezechms.com/livebar/ping';
 			var params = 'domain=' + domain + '&action=' + action;
