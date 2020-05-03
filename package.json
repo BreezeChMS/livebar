@@ -1,0 +1,11 @@
+{
+  "name": "livebar",
+  "scripts": {
+    "test": "cypress run",
+    "serve": "serve ./"
+  },
+  "devDependencies": {
+    "cypress": "^4.5.0",
+    "serve": "^11.3.0"
+  }
+}
