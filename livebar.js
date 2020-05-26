@@ -12,22 +12,31 @@ var livebar = function () { // wrap in function to avoid conflicts
 	var headerText = document.currentScript.getAttribute('data-header-text');
 	var dismissable = document.currentScript.getAttribute('data-dismissable');
 
+	// services
+	var servicesNum = 0;
+	Array.from(document.currentScript.attributes).map(function(attribute, idx) {
+		if (attribute.name.includes("day-of-week")) {
+			servicesNum++;
+		}
+	});
+
+	var allServices = [];
+	for (i = 0; i < servicesNum; i++) {
+		currentIndex = i + 1;
+		allServices.push(
+			getCountdownDataForService(
+				parseInt(document.currentScript.getAttribute(`data-service-${currentIndex}-day-of-week`)),
+				document.currentScript.getAttribute(`data-service-${currentIndex}-hours`),
+				document.currentScript.getAttribute(`data-service-${currentIndex}-minutes`),
+				document.currentScript.getAttribute(`data-service-${currentIndex}-duration-minutes`)
+			)
+		);
+	}
+
 	// timing & links
 	var liveUrl = document.currentScript.getAttribute('data-live-url');
 	if (!liveUrl) { liveUrl = 'https://livebar.church/no-url.html'; }
 	var timezone = document.currentScript.getAttribute('data-timezone');
-
-	// service 1
-	var service1DayOfWeek = parseInt(document.currentScript.getAttribute('data-service-1-day-of-week'));
-	var service1Hours = document.currentScript.getAttribute('data-service-1-hours');
-	var service1Minutes = document.currentScript.getAttribute('data-service-1-minutes');
-	var service1DurationMinutes = document.currentScript.getAttribute('data-service-1-duration-minutes');
-
-	// service 2
-	var service2DayOfWeek = parseInt(document.currentScript.getAttribute('data-service-2-day-of-week'));
-	var service2Hours = document.currentScript.getAttribute('data-service-2-hours');
-	var service2Minutes = document.currentScript.getAttribute('data-service-2-minutes');
-	var service2DurationMinutes = document.currentScript.getAttribute('data-service-2-duration-minutes');
 
 	// additional variables
 	var completeThresholdMinutes = 5;
@@ -354,7 +363,7 @@ var livebar = function () { // wrap in function to avoid conflicts
 
 		// if only one service, return it
 		if (services.length == 1) {
-			return services[1];
+			return services[0];
 		}
 
 		// for each service, if a service is live, return it as live trumps all
@@ -392,11 +401,7 @@ var livebar = function () { // wrap in function to avoid conflicts
 
 	function getCountdownString() {
 
-		var services = [];
-		services.push(getCountdownDataForService(service1DayOfWeek, service1Hours, service1Minutes, service1DurationMinutes));
-		services.push(getCountdownDataForService(service2DayOfWeek, service2Hours, service2Minutes, service2DurationMinutes));
-
-		var service = pickMostRelevantService(services);
+		var service = pickMostRelevantService(allServices);
 
 		// show output depending on view
 		switch (service.view) {
