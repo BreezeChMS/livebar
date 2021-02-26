@@ -52,7 +52,8 @@ var livebar = function () { // wrap in function to avoid conflicts
 		}
 		.livebar-header { 
 			padding: 20px;
-		    z-index: 1000;
+			z-index: 1000;
+			position: relative;
 		}
 		.livebar-close {
 			font-weight: 700;
@@ -165,7 +166,7 @@ var livebar = function () { // wrap in function to avoid conflicts
 	`;
 
 	// when loaded
-	document.addEventListener("DOMContentLoaded", function(){
+	document.addEventListener("DOMContentLoaded", function () {
 		loadLivebar();
 	});
 
@@ -231,15 +232,15 @@ var livebar = function () { // wrap in function to avoid conflicts
 		// listen for close
 		if (dismissable == 'yes') {
 			var livebarClose = document.getElementsByClassName("livebar-close");
-			livebarClose[0].addEventListener('click', function(e) {
+			livebarClose[0].addEventListener('click', function (e) {
 				closeLivebar();
 			});
 		}
 
 		// update the container every 1 second
-		var timerCountdown = setInterval(function() {
+		var timerCountdown = setInterval(function () {
 
-		  timerCountdownContainer.innerHTML = getCountdownString();
+			timerCountdownContainer.innerHTML = getCountdownString();
 
 		}, 1000);
 
@@ -263,7 +264,7 @@ var livebar = function () { // wrap in function to avoid conflicts
 			var http = new XMLHttpRequest();
 			var url = 'https://app.breezechms.com/livebar/ping';
 			var params = 'domain=' + domain + '&action=' + action;
-			http.open('POST', url, true);		
+			http.open('POST', url, true);
 			http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded'); //Send the proper header information along with the request
 			http.send(params);
 		}
@@ -279,7 +280,7 @@ var livebar = function () { // wrap in function to avoid conflicts
 		// if counting down
 		if (countDownDate > now) {
 			var distance = countDownDate - now;
-		// if counting up
+			// if counting up
 		} else {
 			var distance = now - countDownDate;
 		}
@@ -312,10 +313,10 @@ var livebar = function () { // wrap in function to avoid conflicts
 		// get next service start time
 		var nextServiceTimeStarts = new Date();
 		nextServiceTimeStarts.setDate(nextServiceTimeStarts.getDate() + (dayOfWeek + 7 - nextServiceTimeStarts.getDay()) % 7);
-		nextServiceTimeStarts.setHours(hours,minutes,00);
+		nextServiceTimeStarts.setHours(hours, minutes, 00);
 
 		// get next service end time
-		var nextServiceTimeEnds = new Date(nextServiceTimeStarts.getTime() + duration*60000);
+		var nextServiceTimeEnds = new Date(nextServiceTimeStarts.getTime() + duration * 60000);
 
 		// get time since service ended
 		var serviceEndedMinutesAgo = ((now.getTime() - nextServiceTimeEnds.getTime()) / 1000) / 60;
@@ -328,7 +329,7 @@ var livebar = function () { // wrap in function to avoid conflicts
 
 				view = "complete";
 
-			// otherwise jump forward a week and show next countdown
+				// otherwise jump forward a week and show next countdown
 			} else {
 
 				view = "countdown";
@@ -336,15 +337,15 @@ var livebar = function () { // wrap in function to avoid conflicts
 				// get next service start time
 				nextServiceTimeStarts = new Date(nextServiceTimeStarts.getTime() + 24 * (60000 * 60)); // jump forward 24 hours and then recalculate based on next day
 				nextServiceTimeStarts.setDate(nextServiceTimeStarts.getDate() + (dayOfWeek + 7 - nextServiceTimeStarts.getDay()) % 7);
-				nextServiceTimeStarts.setHours(hours,minutes,00);
+				nextServiceTimeStarts.setHours(hours, minutes, 00);
 
 			}
 
-		// if now is before end of service, show live
+			// if now is before end of service, show live
 		} else if (now.getTime() > nextServiceTimeStarts.getTime()) {
 			view = "live";
 
-		// default to countdown
+			// default to countdown
 		} else {
 			view = "countdown";
 		}
@@ -367,11 +368,11 @@ var livebar = function () { // wrap in function to avoid conflicts
 		}
 
 		// for each service, if a service is live, return it as live trumps all
-		for (index = 0; index < services.length; index++) { 
+		for (index = 0; index < services.length; index++) {
 
-		  	if (services[index].view == 'live') {
-		  		return services[index];
-		  	}
+			if (services[index].view == 'live') {
+				return services[index];
+			}
 
 		}
 
@@ -380,17 +381,17 @@ var livebar = function () { // wrap in function to avoid conflicts
 		var nextService = services[0]; // default to first
 
 		// for each service, if a service is complete, return it
-		for (index = 0; index < services.length; index++) { 
+		for (index = 0; index < services.length; index++) {
 
-		  	if (services[index].view == 'complete') {
-		  		return services[index];
-		  	}
+			if (services[index].view == 'complete') {
+				return services[index];
+			}
 
-		  	// keep track of what is the next service to start
-		  	if (services[index].timeUntilStart < nextServiceTimeToStart) {
-		  		nextService = services[index];
-		  		nextServiceTimeToStart = services[index].timeUntilStart;
-		  	}
+			// keep track of what is the next service to start
+			if (services[index].timeUntilStart < nextServiceTimeToStart) {
+				nextService = services[index];
+				nextServiceTimeToStart = services[index].timeUntilStart;
+			}
 
 		}
 
