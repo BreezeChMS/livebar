@@ -188,7 +188,8 @@
 	    	</h5>
 			<form>
 
-			  <div class="form-group">
+			<div class="d-flex flex-row">
+			  <div class="form-group flex-fill">
 			    <label for="date-time">Service/Livestream Time</label>
 			    <select class="form-control" id="date-time">
 			      <option value="0-7-0">Sundays at 7am</option>
@@ -213,7 +214,7 @@
 			    </select>
 			  </div>
 
-			  <div class="form-group">
+			  <div class="form-group flex-fill ml-3">
 			    <label for="duration">Service Duration</label>
 			    <select class="form-control" id="duration">
 
@@ -238,6 +239,11 @@
 
 			    </select>
 			  </div>
+			</div>
+
+			  <div id="service_container"></div>
+
+			  <a href="#" class="btn btn-link btn-block mt-3" id="add_service"><i class="fas fa-plus"></i> Add Another Service</a>
 
 			  <div class="form-group">
 			    <label for="layout">Layout</label>
@@ -435,12 +441,12 @@
 
 var settingsChanged = false;
 
-$('select').on('change', function(e) {
+$(document).on('change', 'select', function(e) {
 	settingsChanged = true;
 	update_code();
 });
 
-$('input').on('change keyup', function(e) {
+$(document).on('change keyup', 'input', function(e) {
 	settingsChanged = true;
 	update_code();
 });
@@ -453,6 +459,13 @@ function getLivebarValues() {
 	var message = cleanInput($('#message').val());
 	var dateTime = $('#date-time').val();
 	var dismissable = $('#dismissable').val();
+
+	var additionalServices = [];
+	$(".additional_service").each(function(idx) {
+		additionalServices[idx] = {};
+		additionalServices[idx]["dateTime"] = $(this).find(".date-time").val();
+		additionalServices[idx]["duration"] = $(this).find(".duration").val();
+	});
 
 	var backgroundColor = $('#background-color').val();
 	var buttonColor = $('#button-color').val();
@@ -476,6 +489,8 @@ function getLivebarValues() {
 	values.minutes = minutes;
 	values.duration = duration;
 
+	values.additionalServices = additionalServices;
+
 	values.backgroundColor = backgroundColor;
 	values.buttonColor = buttonColor;
 	values.textColor = textColor;
@@ -491,6 +506,24 @@ function update_code() {
 
 	var livebarValues = getLivebarValues();
 
+	var additionalServicesCode = "";
+	var additionalServicesIndex = 2;
+	livebarValues.additionalServices.map(function(service, idx) {
+		var dateTimeParts = service.dateTime.split("-");
+		var day = dateTimeParts[0];
+		var hours = dateTimeParts[1];
+		var minutes = dateTimeParts[2];
+
+		additionalServicesCode += `
+			<div class="tab">data-service-${additionalServicesIndex}-day-of-week="${day}"</div>
+			<div class="tab">data-service-${additionalServicesIndex}-hours="${hours}"</div>
+			<div class="tab">data-service-${additionalServicesIndex}-minutes="${minutes}"</div>
+			<div class="tab">data-service-${additionalServicesIndex}-duration-minutes="${service.duration}"</div>
+		`;
+
+		additionalServicesIndex++;
+	});
+
 	var code = `
 				&lt;script type="text/javascript"
 				<div class="tab">src="https://livebar.church/livebar.js"</div>
@@ -505,6 +538,7 @@ function update_code() {
 				<div class="tab">data-service-1-hours="${livebarValues.hours}"</div>
 				<div class="tab">data-service-1-minutes="${livebarValues.minutes}"</div>
 				<div class="tab">data-service-1-duration-minutes="${livebarValues.duration}"</div>
+				${additionalServicesCode}
 				<div class="tab">data-dismissable="${livebarValues.dismissable}"</div>
 				<div class="tab">data-live-url="${livebarValues.url}"</div>
 				<div class="tab">data-timezone="${Intl.DateTimeFormat().resolvedOptions().timeZone}"</div>
@@ -538,6 +572,85 @@ $('#copy').on('click', function(e) {
 
 });
 
+$('#add_service').on('click', function(e) {
+	e.preventDefault();
+	const serviceContainer = $("#service_container");
+
+	$(serviceContainer).append(`
+		<div class="d-flex flex-row additional_service">
+			<div class="form-group flex-fill">
+				<label for="date-time">Service/Livestream Time</label>
+				<select class="form-control date-time">
+					<option value="0-7-0">Sundays at 7am</option>
+					<option value="0-7-15">Sundays at 7:15am</option>
+					<option value="0-7-30">Sundays at 7:30am</option>
+					<option value="0-7-45">Sundays at 7:45am</option>
+					<option value="0-8-0">Sundays at 8am</option>
+					<option value="0-8-15">Sundays at 8:15am</option>
+					<option value="0-8-30">Sundays at 8:30am</option>
+					<option value="0-8-45">Sundays at 8:45am</option>
+					<option value="0-9-0" selected>Sundays at 9am</option>
+					<option value="0-9-15">Sundays at 9:15am</option>
+					<option value="0-9-30">Sundays at 9:30am</option>
+					<option value="0-9-45">Sundays at 9:45am</option>
+					<option value="0-10-0">Sundays at 10am</option>
+					<option value="0-10-15">Sundays at 10:15am</option>
+					<option value="0-10-30">Sundays at 10:30am</option>
+					<option value="0-10-45">Sundays at 10:45am</option>
+					<option value="0-11-0">Sundays at 11am</option>
+					<option value="0-11-15">Sundays at 11:15am</option>
+					<option value="0-11-30">Sundays at 11:30am</option>
+			    </select>
+			</div>
+			<div class="form-group flex-fill col-auto">
+				<label for="duration">Service Duration</label>
+				<select class="form-control duration">
+					<option value="5">5 Minutes</option>
+					<option value="10">10 Minutes</option>
+					<option value="15">15 Minutes</option>
+					<option value="20">20 Minutes</option>
+					<option value="25">25 Minutes</option>
+					<option value="30">30 Minutes</option>
+					<option value="35">35 Minutes</option>
+					<option value="40" selected>40 Minutes</option>
+					<option value="45">45 Minutes</option>
+					<option value="50">50 Minutes</option>
+					<option value="55">55 Minutes</option>
+					<option value="60">60 Minutes</option>
+					<option value="65">65 Minutes</option>
+					<option value="70">70 Minutes</option>
+					<option value="75">75 Minutes</option>
+					<option value="80">80 Minutes</option>
+					<option value="85">85 Minutes</option>
+					<option value="90">90 Minutes</option>
+				</select>
+			</div>
+
+			<div class="form-group align-self-end">
+				<a href="#" class="btn btn-link btn-block mt-3 delete-service" alt="Delete this service">
+					<i class="fas fa-times"></i>
+				</a>
+			</div>
+		</div>
+	`);
+
+	settingsChanged = true;
+	update_code();
+});
+
+$(document).on('click', '.delete-service', function(e) {
+	e.preventDefault();
+	e.stopPropagation();
+	e.stopImmediatePropagation();
+
+	const deleteService = $(this);
+
+	deleteService.parent().parent().remove();
+
+	settingsChanged = true;
+	update_code();
+});
+
 function reloadLivebar() {
 
 	var livebarValues = getLivebarValues();
@@ -552,7 +665,7 @@ function reloadLivebar() {
 
 	var head= document.getElementsByTagName('head')[0];
 	var script= document.createElement('script');
-	script.src='https://livebar.church/livebar.js';
+	script.src='./livebar.js';
 	script.setAttribute('id', 'livebar');
 	script.setAttribute('data-load-livebar-immediately', 'yes');
 	script.setAttribute('data-layout', livebarValues.layout);
@@ -566,6 +679,20 @@ function reloadLivebar() {
 	script.setAttribute('data-service-1-hours', livebarValues.hours);
 	script.setAttribute('data-service-1-minutes', livebarValues.minutes);
 	script.setAttribute('data-service-1-duration-minutes', livebarValues.duration);
+	var additionalServicesIndex = 2;
+	livebarValues.additionalServices.map(function(service, idx) {
+		var dateTimeParts = service.dateTime.split("-");
+		var day = dateTimeParts[0];
+		var hours = dateTimeParts[1];
+		var minutes = dateTimeParts[2];
+
+		script.setAttribute(`data-service-${additionalServicesIndex}-day-of-week`, day);
+		script.setAttribute(`data-service-${additionalServicesIndex}-hours`, hours);
+		script.setAttribute(`data-service-${additionalServicesIndex}-minutes`, minutes);
+		script.setAttribute(`data-service-${additionalServicesIndex}-duration-minutes`, service.duration);
+
+		additionalServicesIndex++;
+	});
 	script.setAttribute('data-dismissable', livebarValues.dismissable);
 	script.setAttribute('data-timezone', Intl.DateTimeFormat().resolvedOptions().timeZone);
 	head.appendChild(script);
