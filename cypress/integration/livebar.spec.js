@@ -12,15 +12,25 @@ describe('Livebar', function () {
     cy.visit('/');
   });
 
-  it('renders livebar', function () {
+  it('displays livebar', () => {
     cy.get('.livebar_container').should('be.visible');
   });
 
-  it('shows watch live message', function () {
+  it('shows watch live message', () => {
     cy.get('.livebar_container').should('contain', 'Watch Live in');
   });
 
-  it('shows watch live message', function () {
-    cy.get('.livebar_container').should('contain', 'Watch Live in');
+  it('displays in sidebar', () => {
+    cy.get('#layout').select('sidebar');
+    cy.get('.livebar_container').should('have.class', 'livebar-sidebar');
+  });
+  
+  it('displays in header', () => {
+    cy.get('#layout').select('header');
+    cy.get('.livebar_container').should('have.class', 'livebar-header');
+  });
+  
+  it('links to web address', () => {
+    cy.get('a.livebar-button').should('have.attr', 'target', '_blank')
   });
 });
