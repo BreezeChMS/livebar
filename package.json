@@ -2,6 +2,7 @@
   "name": "livebar",
   "scripts": {
     "test": "cypress run",
+    "cypress": "cypress open",
     "serve": "serve ./"
   },
   "devDependencies": {
