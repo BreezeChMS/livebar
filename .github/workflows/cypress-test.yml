@@ -9,4 +9,5 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2.8.2
         with:
+          install-command: yarn --frozen-lockfile --silent
           start: yarn serve
