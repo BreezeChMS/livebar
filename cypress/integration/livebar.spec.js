@@ -31,6 +31,14 @@ describe('Livebar', function () {
   });
   
   it('links to web address', () => {
-    cy.get('a.livebar-button').should('have.attr', 'target', '_blank')
+    cy.get('a.livebar-button').should('have.attr', 'target', '_blank');
+  });
+  
+  it('can add another service', () => {
+    cy.get('#add_service').click();
+    cy.get('#code').contains('data-service-2-day-of-week="0"');
+    cy.get('#code').contains('data-service-2-hours="9"');
+    cy.get('#code').contains('data-service-2-minutes="0"');
+    cy.get('#code').contains('data-service-2-duration-minutes="40"');
   });
 });
