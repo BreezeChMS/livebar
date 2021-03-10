@@ -54,10 +54,6 @@
   if (!liveUrl) {
     liveUrl = 'https://livebar.church/no-url.html';
   }
-  let timezone = document.currentScript.getAttribute('data-timezone');
-
-  // additional variables
-  let completeThresholdMinutes = 5;
   let loadLivebarImmediately = document.currentScript.getAttribute(
     'data-load-livebar-immediately'
   );
@@ -330,7 +326,9 @@
 
   function getCountdownDataForService(dayOfWeek, hours, minutes, duration) {
     // get now
-    let now = new Date();
+    let timezone = document.currentScript.getAttribute('data-timezone');
+    let now = timezone ? new Date((new Date()).toLocaleString("en-US", {timeZone: timezone})) : new Date();
+    let completeThresholdMinutes = 5;
 
     // define default view
     let view = 'countdown';
