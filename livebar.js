@@ -224,7 +224,7 @@
 
     if (dismissable === 'yes') {
       let livebarClose = document.createElement('div');
-      livebarClose.classList.add('livebar-button');
+      livebarClose.classList.add('livebar-close');
       livebarClose.innerHTML = '&#x2715;';
       livebarBar.appendChild(livebarClose);
     }
