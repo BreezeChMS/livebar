@@ -239,7 +239,7 @@
 
     let clearFloat = document.createElement('div');
     clearFloat.style.clear = 'both';
-    livebarBar.after(clearFloat);
+    livebarBar.appendChild(clearFloat);
 
     // prepend livebar to body
     closeLivebar(); // close right before inserting to prevent duplicates
