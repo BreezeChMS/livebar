@@ -41,4 +41,9 @@ describe('Livebar', function () {
     cy.get('#code').contains('data-service-2-minutes="0"');
     cy.get('#code').contains('data-service-2-duration-minutes="40"');
   });
+  
+  it('livebar can be dismissed', () => {
+    cy.get('#dismissable').select('yes');
+    cy.get('.livebar-close').should('be.visible');
+  });
 });
